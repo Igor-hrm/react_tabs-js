@@ -11,16 +11,12 @@ export const tabs = [
 ];
 
 export const App = () => {
-  const [isActive, setIsActive] = useState('');
-  const getTabNum = () => {
-    return isActive !== ''
-      ? `Selected tab is Tab ${isActive[isActive.length - 1]}`
-      : 'None tab is selected';
-  };
+  const [isActive, setIsActive] = useState(tabs[0]?.id);
+  const activeTab = tabs.find(tab => tab.id === isActive) || tabs[0];
 
   return (
     <div className="section">
-      <h1 className="title">{getTabNum()}</h1>
+      <h1 className="title">Selected tab is {activeTab.title}</h1>
 
       <Tabs tabs={tabs} activeTabId={isActive} onTabSelected={setIsActive} />
     </div>
